@@ -2,10 +2,10 @@
   <img src = "https://img.icons8.com/fluency/100/000000/movie.png">
   <h1><b>MASTERCODE FILMS API</b></h1>
   <p>Uma plataforma de streaming em desenvolvimento.<p>
-  <img src="https://img.shields.io/github/license/josuelopes512/WstsideFilmes.svg">
-  <img src="https://img.shields.io/github/forks/josuelopes512/WstsideFilmes.svg">
-  <img src="https://img.shields.io/github/stars/josuelopes512/WstsideFilmes.svg">
-  <img src="https://img.shields.io/github/issues/josuelopes512/WstsideFilmes.svg">
+  <img src="https://img.shields.io/github/license/josuelopes512/mastercode_films_api.svg">
+  <img src="https://img.shields.io/github/forks/josuelopes512/mastercode_films_api.svg">
+  <img src="https://img.shields.io/github/stars/josuelopes512/mastercode_films_api.svg">
+  <img src="https://img.shields.io/github/issues/josuelopes512/mastercode_films_api.svg">
 </div>
 
 
