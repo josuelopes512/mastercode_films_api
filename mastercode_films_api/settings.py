@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from django.core.management.utils import get_random_secret_key
+from datetime import timedelta, datetime as dt
 from pathlib import Path
 import environ, os
 
@@ -37,7 +38,7 @@ DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost']))
 
-
+# CSRF_TRUSTED_ORIGINS = ['https://mastercodefilmsapi.josuelopes512.repl.co']
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'corsheaders',
+    'drf_spectacular',
     # 'frontend',
 ]
 
@@ -143,9 +145,21 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Mastercode Films API',
+    'DESCRIPTION': 'Uma plataforma de streaming-api em desenvolvimento.',
+    'VERSION': '1.0.0',
+    # OTHER SETTINGS
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
 
 
 # Internationalization
