@@ -41,7 +41,7 @@ class MovieDetailView(ListCreateAPIView, UpdateAPIView, DestroyAPIView):
         qs = super().get_queryset()
         return qs.objects.filter(movie_id=self.kwargs['pk'])
 
-class MovieView(ListCreateAPIView):
+class MovieView(ListAPIView):
     permission_classes = (IsAuthenticated, )
     
     queryset = Movie.objects.all()
