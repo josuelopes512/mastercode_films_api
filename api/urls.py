@@ -17,14 +17,22 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('post', MovieView.as_view()),
-    path('post_v2', moviePost),
+    path('movie', MovieView.as_view()),
+    path('movie/<int:pk>', MovieDetailView.as_view()),
+    path('movie_id/<int:pk>', MovieFetchallView.as_view()),
+    
+    
+    
+    # path('get', movieList),
+    # path('post_v2', moviePost),
+    # path('put/<str:pk>', moviePut),
+    # path('get_id/<str:pk>', movieList_id),
+    # path('delete/<str:pk>', movieDelete),
+    
+    
+    
     # path('get', MovieListView.as_view()),
-    path('get', movieList),
-    path('get_id/<str:pk>', movieList_id),
     # path('post', moviePost),
-    path('put/<str:pk>', moviePut),
-    path('delete/<str:pk>', movieDelete),
     # path('create', MovieCreateView.as_view()),
     # path('delete', MovieDeleteView.as_view()),
     # path('', MovieView.as_view()),
