@@ -68,7 +68,7 @@
     - ``` python manage.py migrate ```
     - ``` python manage.py migrate --run-syncdb ```
   - Para Acesso http://localhost:8000/admin
-    - ``` python manage.py createsuperuser ```
+    - ``` python manage.py createsuperuser --username="admin" --email="admin@admin.com" ```
   - Acesso ao Shell
     - ``` python manage.py shell ```
   - Para Criação de novo subprojeto
