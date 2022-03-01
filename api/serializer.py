@@ -2,6 +2,7 @@ from dataclasses import field
 from rest_framework import serializers
 from .models import Movie
 
+
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
@@ -29,6 +30,7 @@ class MovieSerializerView(serializers.ModelSerializer):
             'release_date','title','slug','title_norm','video','vote_average','vote_count',
             'popularity','recommended','media_type','created_at','updated_at'
         )
+
 
 class ModelSelializerViewAll(serializers.ModelSerializer):
     class Meta:
