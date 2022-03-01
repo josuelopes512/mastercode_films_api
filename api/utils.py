@@ -184,9 +184,9 @@ def save_banco(dta):
     try:
         dta['movie_id'] = dta['id']
         dta.pop('id')
-        teste = req.get(f"http://localhost:8000/api/get_id/{dta['movie_id']}")
+        teste = req.get(f"http://localhost:8000/api/movie/{dta['movie_id']}")
         if teste.status_code != 200:
-            teste = req.post("http://localhost:8000/api/post_v2", json=dta)
+            teste = req.post("http://localhost:8000/api/movie", json=dta)
             if teste.status_code != 200:
                 with open("error_400_z.json", "a") as f:
                     f.write(f"{dta['movie_id']} ------ {teste.json()}\n")
