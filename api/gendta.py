@@ -2,9 +2,11 @@ from pprint import pprint
 from .serializer import MovieSerializerInsert
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-from threading import Thread
+from threading import Thread, active_count
+from threading import threaded
 from .models import Movie
 from pathlib import Path
+from time import sleep
 
 import os, environ, requests as req
 
@@ -58,7 +60,7 @@ def add_movie_id(movie_id):
     try:
         movie_i_req = req.get(f"{URL_DB}/movie/{movie_id}?api_key={API_KEY}&language=pt-BR")
         movie_i = movie_i_req.json()
-        Thread(target=save_banco, args=(movie_i,)).start()
+        threaded(save_banco, movie_i).start()
     except Exception as e:
         print(f"ERROR: {e}")
     
@@ -67,7 +69,7 @@ def add_movie_id(movie_id):
         filmes_json = recomendados.json()
         filmes_json = filmes_json['results']
         for mov in filmes_json:
-            Thread(target=save_banco, args=(mov,)).start()
+            threaded(save_banco, mov).start()
     except Exception as e:
         print(f"ERROR: {e}")
 
@@ -79,7 +81,13 @@ def trending_movie(ini=1, fim=100):
             json_pag = pag.json()
             data = json_pag['results']
             for dta in data:
-                Thread(target=add_movie_id, args=(dta['id'],)).start()
+                threaded(add_movie_id, dta['id']).start()
             print("Processing databases .........")
         except:
             continue
+
+
+def threaded(target, args):
+    while active_count()>150 :
+        sleep(1)
+    Thread(target=target, args=(args,)).start()

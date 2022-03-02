@@ -75,7 +75,7 @@
     - ``` django-admin startapp frontend ```
     - ``` django-admin startproject project_name ```
   - Para Carregar o banco com os dados da api
-    - ``` python manage.py shell -c 'from api.utils import trending_movie; trending_movie()' ```
+    - ``` python manage.py shell -c 'from api.gendta import trending_movie; trending_movie()' ```
   - Para obter token
     - ``` python manage.py shell -c 'from api.gendta import get_token; print(get_token())' ```    
 
