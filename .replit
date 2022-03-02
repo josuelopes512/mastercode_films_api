@@ -4,5 +4,6 @@ python -m pip install -r requirements.txt
 python manage.py makemigrations api
 python manage.py migrate
 python manage.py migrate --run-syncdb
+python manage.py shell -c 'from api.gendta import trending_movie; trending_movie()' &
 python manage.py runserver 0.0.0.0:8000
 """

@@ -52,7 +52,7 @@ def save_banco(dta):
             ddb = Movie(**dta)
             ddb.save()
     except Exception as e:
-        with open("errors_z.json", "a") as f:
+        with open("errors.log", "a") as f:
             f.write(f"ERROR: {e}, movie_id: {dta['movie_id']}\n")
 
 def add_movie_id(movie_id):
@@ -88,5 +88,7 @@ def trending_movie(ini=1, fim=100):
 
 def threaded(target, args):
     while active_count()>150 :
-        sleep(1)
-    Thread(target=target, args=(args,)).start()
+        sleep(0.01)
+    th = Thread(target=target, args=(args,))
+    th.start()
+    th.join()
