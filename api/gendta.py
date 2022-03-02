@@ -3,7 +3,6 @@ from .serializer import MovieSerializerInsert
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from threading import Thread, active_count
-from threading import threaded
 from .models import Movie
 from pathlib import Path
 from time import sleep
