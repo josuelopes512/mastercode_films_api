@@ -80,7 +80,9 @@ def trending_movie(ini=1, fim=100):
             json_pag = pag.json()
             data = json_pag['results']
             for dta in data:
-                threaded(add_movie_id, dta['id'])
+                data = Movie.objects.filter(movie_id=dta['id'])
+                if not data:
+                    threaded(add_movie_id, dta['id'])
             print("Processing databases .........")
         except:
             continue
