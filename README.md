@@ -57,7 +57,7 @@
     - False -  para o modo de desenvolvimento
   - Adicione no campo API_KEY
 - Execute o projeto.
-  - ```python manage.py runserver```
+  - ```python manage.py runserver 0.0.0.0:8000```
 - Rode o projeto em seu navegador.
   - Acesse em http://localhost:8000
 
@@ -74,5 +74,9 @@
   - Para Criação de novo subprojeto
     - ``` django-admin startapp frontend ```
     - ``` django-admin startproject project_name ```
+  - Para Carregar o banco com os dados da api
+    - ``` python manage.py shell -c 'from api.utils import trending_movie; trending_movie()' ```
+  - Para obter token
+    - ``` python manage.py shell -c 'from api.gendta import get_token; print(get_token())' ```    
 
 #### Desenvolvido por [@JosueLopes](https://github.com/josuelopes512).
