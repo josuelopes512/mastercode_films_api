@@ -180,14 +180,17 @@ def get_add_trending(qtd=10):
 
 ###########################################################################################################################
 
+ip_addr ="http://localhost:8000"
+
+
 def get_token():
     data_inf = {
         "username": "admin",
         "password": "admin"
     }
-    token = req.get(f"http://localhost:8000/token/", json=data_inf).json()
+    token = req.get(f"{ip_addr}/token/", json=data_inf).json()
     return {
-        "Accept": "application/json",
+        "accept": "application/json",
         "Authorization": f"Bearer {token['access']}",
     }
 
@@ -195,9 +198,9 @@ def save_banco(dta):
     try:
         dta['movie_id'] = dta['id']
         dta.pop('id')
-        teste = req.get(f"http://localhost:8000/api/movie/{dta['movie_id']}")
+        teste = req.get(f"{ip_addr}/api/movie/{dta['movie_id']}")
         if teste.status_code != 200:
-            teste = req.post("http://localhost:8000/api/movie/{dta['movie_id']}", json=dta, headers=get_token())
+            teste = req.post(f"{ip_addr}/api/movie/{dta['movie_id']}", json=dta, headers=get_token())
             if teste.status_code != 200:
                 with open("error_400_z.json", "a") as f:
                     f.write(f"{dta['movie_id']} ------ {teste.json()}\n")
