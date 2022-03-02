@@ -223,6 +223,7 @@ def add_movie_id(movie_id):
         pass
 
 def trending_movie(ini=1, fim=100):
+    print("Downloading databases .........")
     for i in range(ini, fim+1):
         try:
             pag = req.get(f'{URL_DB}/trending/movie/week?api_key={API_KEY}&language=pt-BR&page={i}&include_adult=true')
@@ -230,5 +231,6 @@ def trending_movie(ini=1, fim=100):
             data = json_pag['results']
             for dta in data:
                 Thread(target=add_movie_id, args=(dta['id'],)).start()
+            print("Processing databases .........")
         except:
             continue
