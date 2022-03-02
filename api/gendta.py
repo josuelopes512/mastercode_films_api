@@ -68,7 +68,9 @@ def add_movie_id(movie_id):
         filmes_json = recomendados.json()
         filmes_json = filmes_json['results']
         for mov in filmes_json:
-            threaded(save_banco, mov)
+            data = Movie.objects.filter(movie_id=mov['id'])
+            if not data:
+                threaded(save_banco, mov)
     except Exception as e:
         print(f"ERROR: {e}")
 
