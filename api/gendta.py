@@ -52,8 +52,7 @@ def save_banco(dta):
             ddb = Movie(**dta)
             ddb.save()
     except Exception as e:
-        with open("errors.log", "a") as f:
-            f.write(f"ERROR: {e}, movie_id: {dta['movie_id']}\n")
+        logger(e, movie_id=dta['movie_id'])
 
 def add_movie_id(movie_id):
     try:
@@ -61,7 +60,7 @@ def add_movie_id(movie_id):
         movie_i = movie_i_req.json()
         threaded(save_banco, movie_i)
     except Exception as e:
-        print(f"ERROR: {e}")
+        logger(e, movie_id=movie_id)
     
     try:
         recomendados = req.get(f"{URL_DB}/movie/{movie_id}/similar?api_key={API_KEY}&language=pt-BR&page=1")
@@ -72,7 +71,7 @@ def add_movie_id(movie_id):
             if not data:
                 threaded(save_banco, mov)
     except Exception as e:
-        print(f"ERROR: {e}")
+        logger(e, movie_id=movie_id)
 
 def trending_movie(ini=1, fim=100):
     print("Downloading databases .........")
@@ -86,7 +85,8 @@ def trending_movie(ini=1, fim=100):
                 if not data:
                     threaded(add_movie_id, dta['id'])
             print("Processing databases .........")
-        except:
+        except Exception as e:
+            logger(e)
             continue
     print("OK")
 
@@ -97,3 +97,7 @@ def threaded(target, args):
     th = Thread(target=target, args=(args,))
     th.start()
     th.join()
+
+def logger(e, movie_id=0):
+    with open("errors.log", "a") as f:
+        f.write(f"ERROR: {e}, movie_id: {movie_id}\n")
