@@ -7,7 +7,9 @@ from .models import Movie
 from pathlib import Path
 from time import sleep
 
-import os, environ, requests as req
+import os, sys, environ, requests as req
+
+sys.setrecursionlimit(10000)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
