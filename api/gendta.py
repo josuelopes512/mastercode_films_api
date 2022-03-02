@@ -84,6 +84,7 @@ def trending_movie(ini=1, fim=100):
             print("Processing databases .........")
         except:
             continue
+    print("OK")
 
 
 def threaded(target, args):
