@@ -43,3 +43,15 @@ class ModelSelializerViewAll(serializers.ModelSerializer):
             'imdb_id','production_companies','production_countries','revenue','runtime',
             'spoken_languages','status', 'tagline'
         )
+
+
+class ModelSelializerViewAllOpt(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = [
+            "movie_id", "imdb_id", "adult", "backdrop_b64",
+            "genre_ids", "original_language", "original_title",
+            "overview", "poster_b64", "release_date",
+            "title", "slug", "video", "vote_average",
+            "vote_count", "popularity", "media_type"
+        ]
