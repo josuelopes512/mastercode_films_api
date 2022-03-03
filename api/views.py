@@ -42,7 +42,7 @@ class MovieDetailView(ListCreateAPIView, UpdateAPIView, DestroyAPIView):
         return qs.objects.filter(movie_id=self.kwargs['pk'])
 
 class MovieView(ListAPIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     
     queryset = Movie.objects.all().order_by('-popularity')[:40]
     serializer_class = MovieSerializerInsert
