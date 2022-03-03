@@ -60,7 +60,8 @@ def add_movie_id(movie_id):
     try:
         movie_i_req = req.get(f"{URL_DB}/movie/{movie_id}?api_key={API_KEY}&language=pt-BR")
         movie_i = movie_i_req.json()
-        threaded(save_banco, movie_i)
+        # threaded(save_banco, movie_i)
+        Thread(target=save_banco, args=(movie_i,)).start()
     except Exception as e:
         logger(e, movie_id=movie_id)
     
@@ -71,7 +72,9 @@ def add_movie_id(movie_id):
         for mov in filmes_json:
             data = Movie.objects.filter(movie_id=mov['id'])
             if not data:
-                threaded(save_banco, mov)
+                # threaded(save_banco, mov)
+                Thread(target=save_banco, args=(mov,)).start()
+                sleep(3)
     except Exception as e:
         logger(e, movie_id=movie_id)
 
@@ -85,7 +88,9 @@ def trending_movie(ini=1, fim=100):
             for dta in data:
                 data = Movie.objects.filter(movie_id=dta['id'])
                 if not data:
-                    threaded(add_movie_id, dta['id'])
+                    # threaded(add_movie_id, dta['id'])
+                    Thread(target=add_movie_id, args=(dta['id'],)).start()
+                    sleep(5)
             print("Processing databases .........")
         except Exception as e:
             logger(e)
