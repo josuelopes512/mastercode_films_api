@@ -44,7 +44,7 @@ class MovieDetailView(ListCreateAPIView, UpdateAPIView, DestroyAPIView):
 class MovieView(ListAPIView):
     permission_classes = (IsAuthenticated, )
     
-    queryset = Movie.objects.all()
+    queryset = Movie.objects.all().order_by('-popularity')
     serializer_class = MovieSerializerInsert
 
 class MovieFetchallView(ListAPIView):
