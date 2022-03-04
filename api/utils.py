@@ -136,6 +136,8 @@ def poster_inst_b64(instance, save=False, new_bd=None):
     return instance
 
 def jpg_to_base64(link):
+    if not link:
+        return ""
     if '.jpg' in link[-4:] and '/' in link[0]:
         try:
             img = req.get(f'https://image.tmdb.org/t/p/w154{link}')
